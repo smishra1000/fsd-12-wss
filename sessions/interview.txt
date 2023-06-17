@@ -1,0 +1,9 @@
+1> doctype in html ? 
+2>block level and inline elements --
+3> what is head tag used for explain meta tag 
+4> semantics tag and non semntics tag 
+5>form attrubutes action name ; what is difference between get and post 
+6>what is elements and attrubutes 
+7> id and  class attributes
+
+<iframe width="942" height="530" src="https://www.youtube.com/embed/lwYj9w40WtU" title="SOLID Design Principles- JavaScript Example" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>

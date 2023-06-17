@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            h1{
+                color:red
+            }
+            div{
+                background-color: red;
+                width: 100px;
+                height: 400px;
+                margin-top: 10px;;
+            }
+        </style>
+        <title>
+            session 3 media tag,a,img ,style,script
+        </title>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <div>hello box</div>
+        <a href="#home">home</a>
+        <a href="#contactus">contactus</a>
+        <a href="#login">login</a>
+        <!--
+            style tag is used for wrte th css 
+        -->
+        <!-- <div id="home">
+            hello opening box home
+
+        </div>
+        <div id="contactus">
+            hello opening box contact
+
+        </div>
+        <div id="login">
+            hello opening box login
+
+        </div> -->
+        <input type="text" value="sameer" id="fname"/>
+
+        <!--   image,audio,video-->
+
+        <!--- display the image we can use img -->
+        <img src="nodejs-image2.jpg" alt="nodejs image here" witdth="100px" height="100px"/>
+        <!-- to load video in webpage we have video tag-->
+
+        <video width="400px" height="400px" controls>
+            <source src="big_buck_bunny_720p_1mb.mp4" type="video/mp4">
+        </video>
+
+        <!-- to load the audio file in webpage-->
+        <audio controls>
+            <source src="file_example_MP3_700KB.mp3" type="audio/mp3">
+        </audio>
+
+        <!-- iframe-->
+        <iframe src="session2.html" width="500px" height="500px"></iframe>
+
+
+        <video controls>
+            <source src="https://www.youtube.com/embed/BM_lSZPMClo" type="video/mp4">
+        </video>
+        <!--
+
+            1. go to youtube videos
+            2.select any video --
+            3. right clik on youtube video-- get the embed link option
+        -->
+        <!-- <iframe width="680" height="382" src="https://www.youtube.com/embed/BM_lSZPMClo" title="SOLID Design Principles in java with Example | JavaTechie" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe> -->
+
+        <!--
+            html intro,meta head,semantics non semnatcis block inline table list forms media  a tag 
+        -->
+
+        <!-- html 5 storage-->
+        <script>
+                // let fname = document.getElementById("fname")
+                // console.log(fname.value)
+
+                // localstorage,session storage
+                // setTitem----used for set the data in localstorage
+                // getitem--used for get the saved data from localstorage 
+                //localStorage.setItem(key,value)--key and value should be in string
+                // localStorage.setItem("name","sameer")
+                // localStorage.setItem("email","sameer@gmail.com")
+                // console.log(localStorage.getItem("name"))
+                // localStorage.setItem("address","hyd")
+                // console.log(localStorage.getItem("email"))
+                // console.log(localStorage.getItem("address"))
+
+                // localStorage.removeItem("name")
+                // console.log(localStorage.getItem("name"))
+                //localStorage.removeItem("email")
+
+                //localStorage.clear()
+
+                // setItem----save the data 
+
+                // getItem ----get the data
+                // removeItem---remove the item from localstorage
+                // console.log(localStorage.getItem("name"))
+                // console.log(localStorage.getItem("email"))
+                // console.log(localStorage.getItem("address"))
+                // sessionstorage 
+
+                // sessionStorage.setItem("name","sameer")
+                // sessionStorage.setItem("email","sameer@gmail.com")
+                // sessionStorage.setItem("mobile","1414114")
+                // console.log(sessionStorage.getItem("name"))
+                // console.log(sessionStorage.getItem("mobile"))
+
+
+    
+
+        </script>
+    </body>
+</html>
+
+
+
+
+
+
