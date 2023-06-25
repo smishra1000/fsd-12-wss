@@ -1,0 +1,121 @@
+<!doctype html>
+<html>
+    <head>
+        <title>
+            css demo
+        </title>
+        <style>
+            .static-block{
+                width:100px;
+                height:100px;
+                background-color: cyan;
+                left:100px;
+            }
+            .relative-box{
+                width:100px;
+                height:150px;
+                background-color: aquamarine;
+                border: 2px solid red;
+                position: relative;
+                left:10px;
+                right:10px;
+            }
+            .absolute-box{
+                width:100px;
+                height:200px;
+                background-color: red;
+                position: absolute;
+                top:30px;
+                left:20px;
+            }
+            .fixed-block{
+                position: fixed;
+                width:100px;
+                height:100px;
+                background-color: yellow;
+            }
+            .fixed-wrapper{
+                height:500px;
+                background-color: green;
+                width:300px;
+            }
+            .sticky-wrapper{
+                height:300vh;
+
+
+            }
+            .sticky-box{
+                position: sticky;
+                height:200px;
+                background-color: yellow;
+                bottom:0;
+
+            }
+            ul li {
+                display: inline-block;
+                position:relative
+            }
+            .nested-menu{
+                display: none;;
+            }
+            ul li:hover .nested-menu{
+               display: block;
+               position: absolute;
+               width:80px;
+               height:100px;
+               background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- <div class="static-block">
+            hello i am static 
+        </div>
+        <div class="relative-box">
+            hello i am relative i'll chnage my postion based on my normal postion
+        </div>
+        <div style="position: relative; width: 200px;height:300px;border:2px solid green">
+            <div class="absolute-box">
+                hello i am absolute box i'll take from my nearest positioned value
+            </div>
+        </div>
+        <div class="fixed-wrapper">
+            <div class="fixed-block">
+                hello i am fixed i wont move
+            </div>
+        </div> -->
+        <!-- <div class="sticky-wrapper">
+            hello    hello
+                <div class="sticky-box">
+                    hello i am sticky
+                </div>
+                <div>
+                    hello i am not sticky
+                </div>
+        </div> -->
+        <ul>
+            <li>home</li>
+            <li>home</li>
+            <li>aboutsus
+                <ul class="nested-menu">
+                    <li> my hobby</li>
+                    <li> my hobby</li>
+                    <li> my hobby</li>
+                    <li> my hobby</li>
+                   
+                </ul>
+            </li>
+        </ul>
+        <div>
+            
+        </div>
+       
+    </body>
+</html>
+
+// create nav bar with nested menu 
+
+home    courses    exam
+            mean   aws  
+            mern
+            node
