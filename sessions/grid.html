@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            grid demo
+        </title>
+        <style>
+            .parent{
+                display: grid;
+                grid-template-columns: 300px 300px 300px;
+                gap: 10px 5px;
+            }
+            .item{
+                border:2px solid yellow;
+                background-color: red;
+                text-align: center;
+            }
+            .item1{
+                display: grid;
+                grid-template-rows: 100px 200px;
+                grid-template-columns: 20px 20px 20px 80px;
+                
+                /* grid-column-end: span 2; */
+                gap: 10px 10px;
+            }
+            img{
+                width: 100%;
+            }
+            .inner{
+                border: 2px solid red;
+
+            }
+        </style>
+    </head>
+    <body>
+       <div class="parent">
+        <div class="item1">
+            <div class="inner">inner</div>
+            <div class="inner">inner</div>
+            <div class="inner">inner</div>
+            <div class="inner">inner</div>
+            <div class="inner">inner</div>
+            <div class="inner">inner</div>
+        </div>
+        <div class="item">
+            <img src="nodejs-image.jpg"/>
+        </div>
+        <div class="item">
+            <img src="nodejs-image.jpg"/>
+        </div>
+        <div class="item">
+
+            <img src="nodejs-image.jpg"/>
+           
+        </div>
+        <div class="item">
+            <img src="nodejs-image.jpg"/>
+        </div>
+       </div>
+    </body>
+</html>
