@@ -1,0 +1,19 @@
+1> What is CSS?
+2> What are the different ways to include CSS styles in an HTML document?
+2> what are different types of css slectors? 
+3> What is the difference between classes and IDs in CSS?
+4.> What is the box model in CSS?
+4.> What is the box model in CSS?
+5.> What is the difference between margin and padding?
+6.>What are pseudo-classes in CSS?
+7> What are the different values for the CSS position property?
+8> What does the CSS box-sizing property do?
+9> What is the CSS display property used for?
+10> What is the CSS Flexbox layout model?
+11> What is the CSS Grid layout model?
+11> What is the CSS Grid layout model?
+12> what is z-index
+13> what is box shadow?
+14> what is css transform ?
+15> what is responsive web design
+16> Perfectly center an element using css -flex,postion, grid
