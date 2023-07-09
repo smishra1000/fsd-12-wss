@@ -25,8 +25,12 @@
             color: #fff;
         }
 
-        .courses-section, .contact-us {
+        .courses-section,
+        .contact-us {
             margin-top: 40px;
+        }
+        .box1:hover .card-img-top{
+            transform: scale(1.3);
         }
     </style>
 </head>
@@ -51,6 +55,16 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#">Contact</a>
                     </li>
+                    <li class="nav-item">
+                        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#demoform">
+                            Demo class
+                        </button>
+                    </li>
+                    <li class="nav-item">
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#leaderboardModal">
+                            LeaderBoard
+                        </button>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -67,7 +81,7 @@
         <div class="container">
             <div class="row mt-30">
                 <div class="col-md-3">
-                    <div class="card">
+                    <div class="card box1">
                         <img src="nodejs-image.jpg" class="card-img-top" />
                         <div class="card-body">
                             <h5 class="card-title">MEAN SATCK</h5>
@@ -121,17 +135,88 @@
             <p style="text-align: center;">please contact us for courses info</p>
             <form>
                 <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">Email address</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <label class="form-label">Email address</label>
+                    <input type="email" class="form-control">
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                  </div>
+                    <label class="form-label">Message</label>
+                    <textarea class="form-control" rows="3"></textarea>
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
-</body>
 
+    <!-- demo calss formModal -->
+    <div class="modal fade" id="demoform" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Demo Class</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Email address</label>
+                            <input type="email" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input type="text" class="form-control">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- leadrboard modal -->
+     <div class="modal fade" id="leaderboardModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Leader board</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-stripped">
+                        <thead>
+                            <tr>
+                                <th>Roll</th>
+                                <th>Name</th>
+                                <th> Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="table-primary">
+                                <td>101</td>
+                                <td>Sana</td>
+                                <td>600</td>
+                            </tr>
+                            <tr class="table-success">
+                                <td>102</td>
+                                <td>Rohit</td>
+                                <td>500</td>
+                            </tr>
+                            <tr class="table-danger">
+                                <td>103</td>
+                                <td>Mahesh</td>
+                                <td>400</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-success" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
 </html>
