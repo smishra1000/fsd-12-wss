@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        landing page course
+    </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <style>
+        .main {
+            height: 80vh;
+            background-color: grey;
+            background-image: url("nodejs-image.jpg");
+            background-position: center;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+        }
+
+        .courses-section, .contact-us {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+
+<body>
+    <!--- navigation here-->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">MERN Stack</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">About us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Course</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- main section-->
+    <div class="main">
+        <div class="container">
+            <h1>Welcome to MEAN Stack course</h1>
+            <button class="btn btn-primary">View Courses</button>
+        </div>
+    </div>
+    <!-- courses section-->
+    <div class="courses-section ">
+        <div class="container">
+            <div class="row mt-30">
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="nodejs-image.jpg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">MEAN SATCK</h5>
+                            <p class="card-text">Mean satck is full stack development course with node react express
+                                mongo.</p>
+                            <a href="#" class="btn btn-primary">Go Live</a>
+                            <div class="course-ratings">
+                                <span class="badge text-bg-warning">4.5*</span>
+                                <span class="badge text-bg-danger">Instructor : sameer mishra</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="nodejs-image.jpg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">MEAN SATCK</h5>
+                            <p class="card-text">Mean satck is full stack development course with node react express
+                                mongo.</p>
+                            <a href="#" class="btn btn-primary">Go Live</a>
+                            <div class="course-ratings">
+                                <span class="badge text-bg-warning">4.5*</span>
+                                <span class="badge text-bg-primary">Instructor : sameer mishra</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="card">
+                        <img src="nodejs-image.jpg" class="card-img-top" />
+                        <div class="card-body">
+                            <h5 class="card-title">MEAN SATCK</h5>
+                            <p class="card-text">Mean satck is full stack development course with node react express
+                                mongo.</p>
+                            <a href="#" class="btn btn-primary">Go Live</a>
+                            <div class="course-ratings">
+                                <span class="badge text-bg-warning">4.5*</span>
+                                <span class="badge text-bg-success">Instructor : sameer mishra</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--  Conatct us-->
+    <div class="contact-us">
+        <div class="container">
+            <h2 style="text-align: center;">Contact Us</h2>
+            <p style="text-align: center;">please contact us for courses info</p>
+            <form>
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                  </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
