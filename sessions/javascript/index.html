@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+    <head>
+        <title>js demo</title>
+        <style>
+            .box1{
+                width: 100px;
+                height: 100px;
+                background-color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>hello js</h1>
+        <!--- 1 . inside script tag we can write js code-->
+        <div class="box1" id="b1">
+            box 1
+        </div>
+        <button onclick="show()">show</button>
+        <button onclick="hide()">hide</button>
+        <button onclick="changecolor()">chnagecolor</button>
+        <button onclick="alert('hello hiii')">show alert</button>
+        <script>
+            console.log("hello world")
+            let a = 30;
+            let b = 40
+            console.log(a+b)
+        </script>
+        <script src="index.js"></script>
+    </body>
+</html>
