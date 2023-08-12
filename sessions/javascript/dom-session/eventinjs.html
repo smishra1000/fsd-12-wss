@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>events in js</title>
+    </head>
+    <body>
+        <h1>hello world</h1>
+        <button onclick="changeColor()">change color</button>
+        <button onclick="hideme()">hideme</button>
+        <script>
+            function changeColor(){
+                let h1 = document.querySelector("h1")
+                h1.style.color="red";
+            }
+            function hideme(){
+                let h1 = document.querySelector("h1")
+                h1.style.display="none"
+            }
+        </script>
+    </body>
+</html>
