@@ -50,7 +50,7 @@
 </form>
 <h1 style="color:green">hello enterd data=sameer</h1>
 </body> */}
-
+let Names = [];
 let form = document.createElement("form")
 let label = document.createElement("label")
 label.textContent="first name"
@@ -65,6 +65,7 @@ inputBox.value=""
 let button = document.createElement("button")
 button.textContent="save"
 button.addEventListener("click",displayData)
+
 form.appendChild(inputBox)
 form.appendChild(button)
 
@@ -74,11 +75,34 @@ document.body.appendChild(form)
 
 function displayData(e){
     e.preventDefault()
-    let h1=document.createElement("h1")
-    h1.style.color="green"
+    
+    // let h1=document.createElement("h1")
+    // h1.style.color="green"
     let input = document.getElementById("fname")
-    h1.textContent="hello enterd data="+ input.value
-    document.body.appendChild(h1)
+    Names.push({id:Names.length+1,name:input.value})
+    let ul = document.createElement("ul")
+    let li = ""
+    for(let i =0;i<Names.length;i++){
+        let li = document.createElement("li")
+        let span = document.createElement("span")
+        span.textContent=" edit"
+        span.addEventListener("click",editItem)
+       
+        li.textContent=Names[i].name
+        li.appendChild(span)
+        ul.appendChild(li)
+    }
+    document.getElementById("fname").value=""
+    document.body.appendChild(ul)
+    // h1.textContent="hello enterd data="+ input.value
+    // document.body.appendChild(h1)
+}
+function editItem(e){
+    let editedItem = Names.find(function(item){
+        return item.id===1
+    })
+    document.getElementById("fname").value=editedItem.name
+
 }
 
 
