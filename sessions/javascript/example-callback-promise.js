@@ -33,7 +33,7 @@ function displayCertificate(){
 }
 
 courseComplete().then(function(){
-    displayCertificate();
+    displayCertificate()
 }).catch(function(err){
     console.log("some thing wentbwrong course not completed")
 })
