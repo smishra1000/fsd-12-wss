@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+
+<head>
+    <title>
+        react sample using cdn
+    </title>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+</head>
+
+<body>
+    <div id="my-app">
+        
+    </div>
+    <script>
+        let element = React.createElement("h1", { style: { color: "green" } }, "Hello world using react")
+        ReactDOM.render(element, document.getElementById("my-app"))
+    </script>
+</body>
+
+</html>
