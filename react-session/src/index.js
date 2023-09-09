@@ -9,12 +9,15 @@ import "bootstrap/dist/js/bootstrap.bundle"
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <App />
-    {/* <Header/>
-    <Header/> */}
-  </React.StrictMode>
+    // {
+      /* <Header/>
+    <Header/> */
+  // }
+  // </React.StrictMode>
 );
+
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
