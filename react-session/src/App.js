@@ -19,6 +19,7 @@ import Header from './Pages/Header';
 import Course from './Pages/Course';
 import Counter from './Pages/Counter';
 import LifeCycleExample from './Pages/LifeCycleExample';
+import Users from './Pages/Users';
 
 function App() {
   return (
@@ -40,7 +41,7 @@ function App() {
     {/* <EventHandling/> */}
     {/* <StudentForm/> */}
 
-    {/* <BrowserRouter>
+    <BrowserRouter>
     <Header/>
     <Routes>
       <Route path="/" element={<Home/>}></Route>
@@ -49,9 +50,10 @@ function App() {
       <Route path="/course" element={<Course/>}></Route>
       <Route path="/counter" element={<Counter/>}></Route>
       <Route path="/lifecycleexample" element={<LifeCycleExample/>}></Route>
+      <Route path="/users" element={<Users/>}></Route>
     </Routes>
-    </BrowserRouter> */}
-    <LifeCycleExample age={20}/>
+    </BrowserRouter>
+    {/* <LifeCycleExample age={20}/> */}
 
    </div>
   );
