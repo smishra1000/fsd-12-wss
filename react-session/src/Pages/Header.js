@@ -31,6 +31,12 @@ function Header() {
                         <li className="nav-item">
                         <Link className="nav-link" to="/users">Users</Link>
                         </li>
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/counterFunction">CounterFunction</Link>
+                        </li>
+                        <li className="nav-item">
+                        <Link className="nav-link" to="/allhooks">All Hooks</Link>
+                        </li>
                     </ul>
                 </div>
             </div>

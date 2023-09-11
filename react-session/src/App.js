@@ -20,6 +20,8 @@ import Course from './Pages/Course';
 import Counter from './Pages/Counter';
 import LifeCycleExample from './Pages/LifeCycleExample';
 import Users from './Pages/Users';
+import CounterFunction from './Pages/CounterFunction';
+import AllHooks from './hooks/AllHooks';
 
 function App() {
   return (
@@ -51,6 +53,8 @@ function App() {
       <Route path="/counter" element={<Counter/>}></Route>
       <Route path="/lifecycleexample" element={<LifeCycleExample/>}></Route>
       <Route path="/users" element={<Users/>}></Route>
+      <Route path="/counterfunction" element={<CounterFunction/>}></Route>
+      <Route path="/allhooks" element={<AllHooks/>}></Route>
     </Routes>
     </BrowserRouter>
     {/* <LifeCycleExample age={20}/> */}
