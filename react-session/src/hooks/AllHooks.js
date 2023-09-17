@@ -11,6 +11,9 @@ import UseContextHookEx from "./UseContextHookEx"
 import UseReducerHookEx from "./UseReducerHookEx"
 import UseStateCounter from "./UseStateCounter"
 import UseReducerEmployee from "./UseReducerEmployee"
+import UseRefHookEx from "./UseRefHookEx"
+import Parent from "./Parent"
+import UseCallBackHookEx from "./UseCallBackHookEx"
 
 function AllHooks(){
     const [show,setShow] = useState(false)
@@ -29,7 +32,10 @@ function AllHooks(){
             {/* <UseContextHookEx/> */}
             {/* <UseReducerHookEx/>
             <UseStateCounter/> */}
-            <UseReducerEmployee/>
+            {/* <UseReducerEmployee/> */}
+            {/* <UseRefHookEx/> */}
+            {/* <Parent/> */}
+        <UseCallBackHookEx/>
             
         </div>
     )
