@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>
+        js questions
+    </title>
+</head>
+
+<body>
+    <script>
+        // let age = 20
+
+        // function GetMyAge() {
+        //     // var age =undefined
+        //     // console.log(age);//40,20
+        //     // var age = 40
+        //     console.log(age);//
+        // }
+        // GetMyAge()
+
+    //     function outer(){
+    //         let a = 10;
+    //        return function inner(){
+    //             console.log(a)
+    //         }
+    //     }
+
+    //    let fn = outer();
+    //    fn()
+
+    // function sum(){
+    //     let a = 10,b=20
+    //     console.log(a,b)
+    // }
+    // sum();
+    // console.log(a,b)
+
+    function sum(){
+        let a = 10,b=20
+        console.log(a,b)
+        return function sub(){
+            console.log(a,b)
+        }
+    }
+
+    console.log(sum())
+    console.log(sum()())
+
+    </script>
+</body>
+</html>
+
+<!-- wed thru,frida---react-reactjs
+ 9hrs
+
+ scoping object this function clourse hoisting asyn nature in js ---how js work 
+ claes es6 --- 
+ prmise callback async await timer function;dom manipulation  -->
