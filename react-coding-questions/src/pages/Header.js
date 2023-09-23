@@ -15,6 +15,9 @@ function Header() {
                         <li className="nav-item">
                             <Link className="nav-link active" aria-current="page" to="/parentChild">ParentChild</Link>
                         </li>
+                        <li className="nav-item">
+                            <Link className="nav-link active" aria-current="page" to="/students">Students</Link>
+                        </li>
 
 
                     </ul>
