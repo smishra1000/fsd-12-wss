@@ -8,6 +8,7 @@ import Parent from './pages/Parent';
 import Students from './pages/Students';
 import CreateStudent from './pages/CreateStudent';
 import UpdateStudent from './pages/UpdateStudent';
+import Dropdown from './pages/Dropdown';
 function App() {
   return (
     <div className='container-fluid'>
@@ -19,6 +20,7 @@ function App() {
           <Route path="/students" element={<Students/>}></Route>
           <Route path="/createStudent" element={<CreateStudent/>}></Route>
           <Route path="/updateStudent/:id" element={<UpdateStudent/>}></Route>
+          <Route path="/dropdown" element={<Dropdown/>}></Route>
         </Routes>
         </BrowserRouter>
     </div>
