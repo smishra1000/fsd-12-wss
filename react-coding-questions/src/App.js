@@ -7,6 +7,7 @@ import Header from './pages/Header';
 import Parent from './pages/Parent';
 import Students from './pages/Students';
 import CreateStudent from './pages/CreateStudent';
+import UpdateStudent from './pages/UpdateStudent';
 function App() {
   return (
     <div className='container-fluid'>
@@ -17,6 +18,7 @@ function App() {
           <Route path="/parentChild" element={<Parent/>}></Route>
           <Route path="/students" element={<Students/>}></Route>
           <Route path="/createStudent" element={<CreateStudent/>}></Route>
+          <Route path="/updateStudent/:id" element={<UpdateStudent/>}></Route>
         </Routes>
         </BrowserRouter>
     </div>

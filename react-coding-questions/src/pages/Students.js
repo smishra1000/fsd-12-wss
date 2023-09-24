@@ -1,21 +1,6 @@
 
-
 import { useEffect, useState } from "react"
 import {useNavigate} from "react-router-dom"
-// const studentsD = [
-//     {
-//         id: 1,
-//         name: "Mahesh",
-//         email: "mahesh@carrerx.com",
-//         status: "active"
-//     },
-//     {
-//         id: 2,
-//         name: "Nikhil",
-//         email: "nikhil@carrerx.com",
-//         status: "active",
-//     }
-// ]
 function Students() {
     const [students, setStudents] = useState([])
     const [filteredStudents,setFilteredStudents] = useState([])
@@ -25,12 +10,18 @@ function Students() {
         navigate("/createStudent")
     }
 
-    useEffect(()=>{
+    const getStudentsRecords = ()=>{
         let students = JSON.parse(localStorage.getItem("students"))
         if(students){
             setFilteredStudents(students)
             setStudents(students)
+        }else{
+            setFilteredStudents([])
+            setStudents([])
         }
+    }
+    useEffect(()=>{
+        getStudentsRecords();
     },[])
 
     const onSearchChange = (e)=>{
@@ -51,6 +42,19 @@ function Students() {
             setFilteredStudents(students)
         }
     }
+
+    const editStudent = (e,student)=>{
+
+        navigate("/updateStudent/"+student.id)
+    }
+
+    const deleteStudent = (e,st)=>{
+        let filteredStudents = students.filter((student)=>{
+            return student.id!==st.id
+        })
+        localStorage.setItem("students",JSON.stringify(filteredStudents))
+        getStudentsRecords();
+    }
     
     return (
         <div className="container">
@@ -67,7 +71,8 @@ function Students() {
             </div>
             <div className="row">
                 <h3>Students Records</h3>
-                <table className="table table-success table-striped">
+                {filteredStudents.length===0 && <h4>No Students</h4>}
+                {filteredStudents.length>0 && <table className="table table-success table-striped">
                     <thead>
                         <tr>
                             <th scope="col">Id</th>
@@ -86,15 +91,15 @@ function Students() {
                                     <td>{student.email}</td>
                                     <td>{student.status}</td>
                                     <td>
-                                        <button type="button" className="btn btn-primary">Edit</button>
-                                        <button type="button" className="btn btn-secondary">Delete</button>
+                                        <button type="button" className="btn btn-primary" onClick={(e)=>editStudent(e,student)}>Edit</button>
+                                        <button type="button" className="btn btn-secondary" onClick={(e)=>deleteStudent(e,student)}>Delete</button>
                                     </td>
 
                                 </tr>
                             )
                         })}
                     </tbody>
-                </table>
+                </table>}
             </div>
 
         </div>
