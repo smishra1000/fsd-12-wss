@@ -1,59 +1,40 @@
-const express = require("express")
+// const express = require("express")
+// const app = express();
+// const userRouter = require("./routes/user")
+// const companyRoutes = require("./routes/company")
+// var logggedIn = true
+// var apiKey = "dd1234"
+// // function checkUserLogin(req, res, next) {
+// //     if (logggedIn === true) {
+// //         next()
+// //     } else {
+// //         res.send("not looged in you are not autherized")
+// //     }
+// // }
 
-const app = express();
-var employess = [
-    {
-        id:1,
-        name:"test1",
-        age:30
-    },
-    {
-        id:2,
-        name:"test2",
-        age:30
-    },
-    {
-        id:3,
-        name:"test3",
-        age:45
-    }
-]
+// function checkValidApiKey(req,res,next){
+// console.log(req.params)
+// if(req.params.apikey===apiKey){
+//     next()
+// }else{
+//     res.send("not valid api key")
+// }
+// }
 
-app.get("/",function(req,res){
-    res.send("hello world from express default routes")
-})
-// app.get("/user_data",function(req,res){
-//     res.send("hello from user data routes")
+// //app.use(checkValidApiKey)
+
+// app.use("/users", userRouter)
+// app.use("/company", companyRoutes)
+
+
+// app.get("/wheather/:city/:apikey",checkValidApiKey,function(req,res){
+//     res.send(`temparature of ${req.params.city} is 30deg`)
 // })
 
-// app.get("/employee_data",function(req,res){
-//     res.send("hello from employee data routes")
+// app.listen(8000, function () {
+//     console.log("server started")
 // })
 
-// app.get("/login",function(req,res){
-//     res.send("hello from login routes")
-// })
-
-// app.get("/logout",function(req,res){
-//     res.send("logut done")
-// })
-
-// app.get("/movies/2023",function(req,res){
-//     res.send([{name:"thor"},{name:"abcd"}])
-// })
-
-app.get("/employees",function(req,res){
-    res.send(employess)
-})
-app.get("/employeeById/:id",function(req,res){
-    console.log(req.params)
-    // res.send("employee by id routes")
-    const data = employess.filter(function(emp){
-        return emp.id===Number(req.params.id)
-    })
-    res.send(data)
-})
-
-app.listen(8000,function(){
-    console.log("server started")
-})
+// // localhost:8000/users/byid
+// // localhost:8000/users/create
+// // localhost:8000/users/update
