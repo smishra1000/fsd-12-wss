@@ -9,6 +9,7 @@ import Students from './pages/Students';
 import CreateStudent from './pages/CreateStudent';
 import UpdateStudent from './pages/UpdateStudent';
 import Dropdown from './pages/Dropdown';
+import Employee from './pages/Employee';
 function App() {
   return (
     <div className='container-fluid'>
@@ -21,6 +22,7 @@ function App() {
           <Route path="/createStudent" element={<CreateStudent/>}></Route>
           <Route path="/updateStudent/:id" element={<UpdateStudent/>}></Route>
           <Route path="/dropdown" element={<Dropdown/>}></Route>
+          <Route path="/emp-react-node-express" element={<Employee/>}></Route>
         </Routes>
         </BrowserRouter>
     </div>
