@@ -1,47 +1,18 @@
 const express = require("express")
-
 const router = express.Router();
+const EmployeeModel = require("../models/employee")
 
-const employess = [
-    {
-        id:1,
-        name:"test1",
-        age:20,
-        email:"test1@gmail.com"
-    },
-    {
-        id:2,
-        name:"test2",
-        age:22,
-        email:"test2@gmail.com"
-    },
-    {
-        id:3,
-        name:"test3",
-        age:24,
-        email:"test3@gmail.com"
-    },
-    {
-        id:4,
-        name:"test4",
-        age:20,
-        email:"test4@gmail.com"
-    },
-    {
-        id:5,
-        name:"test5",
-        age:20,
-        email:"test5@gmail.com"
-    },
-    {
-        id:6,
-        name:"test6",
-        age:35,
-        email:"test6@gmail.com"
-    }
-]
-router.get("/all",function(req,res){
-    res.send(employess)
+router.post("/create", async function(req,res){
+    console.log(req.body)
+    let employeeNew = new EmployeeModel(req.body)
+    await employeeNew.save();
+    res.send("employee save successfully")
+
+})
+
+router.get("/all",async function(req,res){
+    let employees = await EmployeeModel.find()
+    res.send(employees)
 })
 
 module.exports = router
