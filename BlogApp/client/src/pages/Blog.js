@@ -1,10 +1,11 @@
 import { useState,useEffect } from "react"
+import { useNavigate } from "react-router-dom"
 import axios from "axios"
-import BlogList from "./BlogList"
+
 
 function Blog() {
     const [blogData,setBlogData] = useState({title:"",content:"",author:"",image:"https://knorish-asset-cdn.azureedge.net/knorish-static-assets/images/v1/default_announcement_thumb.jpg"})
-
+    const navigate = useNavigate();
     const onFieldChange = (e)=>{
             setBlogData((prev)=>{
                 return {
@@ -17,6 +18,8 @@ function Blog() {
     const saveBlog = (e)=>{
         axios.post("http://localhost:8000/blog/create",blogData).then(function(data){
             console.log("blog created successfullly")
+            navigate("/")
+            
         }).catch(function(err){
             console.log(err)
         })
@@ -33,7 +36,7 @@ function Blog() {
                     <div className="row">
                         <div className="mb-3">
                             <label className="form-label">Ttitle</label>
-                            <input type="text" className="form-control" placeholder="Enter Title" name="title"value={blogData.title} onChange={(e)=>onFieldChange(e)}/>
+                            <input type="text" className="form-control" placeholder="Enter Title" name="title" value={blogData.title} onChange={(e)=>onFieldChange(e)}/>
                         </div>
                     </div>
                     <div className="row">
@@ -51,7 +54,6 @@ function Blog() {
                     <button className="btn btn-primary" onClick={(e)=>saveBlog(e)}>Create</button>
                 </div>
             </div>
-            <BlogList/>
         </div>
     )
 }
