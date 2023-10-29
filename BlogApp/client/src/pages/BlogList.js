@@ -56,9 +56,13 @@ function BlogList() {
             getAllBlogs();
         }
     }
+
+    const logout = ()=>{
+        navigate("/login")
+    }
     return (
         <div className="container mt-4">
-            <div className="row">
+            <div className="row mt-4">
                 <div className="col-md-9">
                     <h3>My Blogs</h3>
                 </div>
@@ -66,8 +70,10 @@ function BlogList() {
                     <button className="btn btn-success btn-sm" onClick={() => goToCreateBlog()}>
                         +Create
                     </button>
+                    <button className="btn btn-danger btn-sm" onClick={() => logout()}>
+                        Logout
+                    </button>
                 </div>
-
             </div>
             <div className="row">
                 <div className="col-md-6">
@@ -76,7 +82,6 @@ function BlogList() {
                         <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={(e)=>searchBlogs(e)}>Search</button>
                     </form>
                 </div>
-
             </div>
 
             <ul className="list-group">
@@ -88,7 +93,6 @@ function BlogList() {
                                     <div className="blog-image" >
                                         <img src={blog.image} style={{ height: '200px' }} />
                                     </div>
-
                                 </div>
                                 <div className="col-md-6">
                                     <h2>{blog.title}</h2>
@@ -102,7 +106,6 @@ function BlogList() {
                                 </div>
                             </div>
                         </li>
-
                     )
                 })}
             </ul>
