@@ -4,7 +4,9 @@ import axios from "axios"
 
 function BlogList() {
     const [blogs, setBlogs] = useState([])
-    const [searchKey,setSearchKey] = useState("")
+    const [searchKey, setSearchKey] = useState("")
+    const [categories, setCategories] = useState(['All', 'Tech', 'Science', 'Bio'])
+    const [selectedCategoryIndex,setSelectedCategoryIndex] = useState(0)
     const navigate = useNavigate();
     useEffect(() => {
         getAllBlogs();
@@ -33,32 +35,41 @@ function BlogList() {
         })
     }
 
-    const changeSearchkey = (e)=>{
+    const changeSearchkey = (e) => {
         setSearchKey(e.target.value)
         // if(e.target.value===""){
         //     getAllBlogs();
-            
+
         // }else{
         //     setSearchKey(e.target.value)
         // }
 
     }
 
-    const searchBlogs = (e)=>{
+    const searchBlogs = (e) => {
         e.preventDefault();
-        if(searchKey!==""){
+        if (searchKey !== "") {
             axios.get(`http://localhost:8000/blog/searchByTitle/${searchKey}`).then(function (res) {
                 setBlogs(res.data)
-             }).catch(function (err) {
-                 console.log(err)
-             })
-        }else{
+            }).catch(function (err) {
+                console.log(err)
+            })
+        } else {
             getAllBlogs();
         }
     }
 
-    const logout = ()=>{
+    const logout = () => {
         navigate("/login")
+    }
+    const getByCategory = (e,category,index)=>{
+        setSelectedCategoryIndex(index)
+        console.log(category)
+        axios.get(`http://localhost:8000/blog/searchByCategory/${category}`).then(function (res) {
+            setBlogs(res.data)
+        }).catch(function (err) {
+            console.log(err)
+        })
     }
     return (
         <div className="container mt-4">
@@ -77,10 +88,17 @@ function BlogList() {
             </div>
             <div className="row">
                 <div className="col-md-6">
-                    <form class="form-inline my-2 my-lg-0" style={{display:'flex'}}>
-                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e)=>changeSearchkey(e)} value={searchKey}/>
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={(e)=>searchBlogs(e)}>Search</button>
+                    <form class="form-inline my-2 my-lg-0" style={{ display: 'flex' }}>
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" onChange={(e) => changeSearchkey(e)} value={searchKey} />
+                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onClick={(e) => searchBlogs(e)}>Search</button>
                     </form>
+                </div>
+                <div className="col-md-6" style={{display:'flex',justifyContent:'space-between',alignItems:'center'}}>
+                    {categories.map((category,index) => {
+                        return (
+                            <span className={selectedCategoryIndex===index ? 'badge rounded-pill bg-success with-border' : 'badge rounded-pill bg-secondary'} style={{cursor:'pointer'}} onClick={(e)=>getByCategory(e,category,index)}>{category}</span>
+                        )
+                    })}
                 </div>
             </div>
 
@@ -97,7 +115,8 @@ function BlogList() {
                                 <div className="col-md-6">
                                     <h2>{blog.title}</h2>
                                     <p>{blog.content}</p>
-                                    <p className="">{blog.author}</p>
+                                    <p className="">Author : <span class="badge rounded-pill bg-success">{blog.author}</span></p>
+                                    <p className="">Category : <span class="badge rounded-pill bg-danger">{blog.category}</span></p>
                                     <a href="#" className="btn btn-primary">Read More</a>
                                 </div>
                                 <div className="col-md-2">

@@ -4,7 +4,7 @@ import axios from "axios"
 
 
 function Blog() {
-    const [blogData,setBlogData] = useState({title:"",content:"",author:"",image:"https://knorish-asset-cdn.azureedge.net/knorish-static-assets/images/v1/default_announcement_thumb.jpg"})
+    const [blogData,setBlogData] = useState({title:"",content:"",author:"",image:"https://knorish-asset-cdn.azureedge.net/knorish-static-assets/images/v1/default_announcement_thumb.jpg",category:""})
     const navigate = useNavigate();
     const onFieldChange = (e)=>{
             setBlogData((prev)=>{
@@ -18,11 +18,14 @@ function Blog() {
     const saveBlog = (e)=>{
         axios.post("http://localhost:8000/blog/create",blogData).then(function(data){
             console.log("blog created successfullly")
-            navigate("/")
+            navigate("/bloglist")
             
         }).catch(function(err){
             console.log(err)
         })
+    }
+    const goToBlogs = ()=>{
+        navigate("/bloglist")
     }
     return (
         <div className="container">
@@ -30,6 +33,7 @@ function Blog() {
                 <div className="col-md-6">
                     <div className="leftside" style={{height:'400px',background:'teal'}}>
                         <h1 className="text-center">Blog Create Form</h1>
+                       
                     </div>
                 </div>
                 <div className="col-md-6">
@@ -51,9 +55,16 @@ function Blog() {
                             <input type="text" className="form-control" placeholder="Enter Author" name="author" value={blogData.author} onChange={(e)=>onFieldChange(e)}/>
                         </div>
                     </div>
+                    <div className="row">
+                        <div class="mb-3">
+                            <label  className="form-label">Category</label>
+                            <input type="text" className="form-control" placeholder="Enter Category" name="category" value={blogData.category} onChange={(e)=>onFieldChange(e)}/>
+                        </div>
+                    </div>
                     <button className="btn btn-primary" onClick={(e)=>saveBlog(e)}>Create</button>
                 </div>
             </div>
+            <button className="btn btn-primary" onClick={(e)=>goToBlogs(e)}>Back</button>
         </div>
     )
 }

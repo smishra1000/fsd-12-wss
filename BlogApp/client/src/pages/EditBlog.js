@@ -4,10 +4,10 @@ import axios from "axios"
 
 
 function EditBlog() {
-    const [blogData, setBlogData] = useState({ title: "", content: "", author: "", image: "" })
+    const [blogData, setBlogData] = useState({ title: "", content: "", author: "", image: "",category:"" })
     const params = useParams()
     const navigate = useNavigate()
-    console.log(params)
+    
 
     useEffect(() => {
         axios.get(`http://localhost:8000/blog/blogById/${params.id}`).then(function (res) {
@@ -18,7 +18,8 @@ function EditBlog() {
                     title: res.data.title,
                     content: res.data.content,
                     author: res.data.author,
-                    image: res.data.image
+                    image: res.data.image,
+                    category: res.data.category
 
                 }
             })
@@ -37,7 +38,7 @@ function EditBlog() {
     const editBlog = (e)=>{
         axios.put(`http://localhost:8000/blog/edit/${params.id}`,blogData).then(function(data){
             console.log("blog updated successfullly")
-            navigate("/")
+            navigate("/bloglist")
             
         }).catch(function(err){
             console.log(err)
@@ -68,6 +69,12 @@ function EditBlog() {
                         <div class="mb-3">
                             <label className="form-label">Author</label>
                             <input type="text" className="form-control" placeholder="Enter Author" name="author" value={blogData.author} onChange={(e) => onFieldChange(e)} />
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div class="mb-3">
+                            <label  className="form-label">Category</label>
+                            <input type="text" className="form-control" placeholder="Enter Category" name="category" value={blogData.category} onChange={(e)=>onFieldChange(e)}/>
                         </div>
                     </div>
                     <button className="btn btn-primary" onClick={(e) => editBlog(e)}>Edit</button>
