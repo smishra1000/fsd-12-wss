@@ -38,5 +38,17 @@ router.get("/searchByTitle/:title",async function(req,res){
     res.send(blogs)
 })
 
+router.get("/searchByCategory/:category",async function(req,res){
+    console.log(req.params.category)
+    if(req.params.category.toLowerCase()==='all'){
+        const blogs = await BlogModel.find({})
+        res.send(blogs)
+    }else{
+        const blogs = await BlogModel.find({category:req.params.category.toLowerCase()})
+        res.send(blogs)
+    }
+    
+})
+
 
 module.exports = router;

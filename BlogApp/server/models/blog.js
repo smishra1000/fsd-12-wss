@@ -4,7 +4,8 @@ const blogSchema = new mongoose.Schema({
     title:String,
     content:String,
     author:String,
-    image:String
+    image:String,
+    category:String,
 })
 
 let BlogModel = mongoose.model("blog",blogSchema,"blog")
