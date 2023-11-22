@@ -10,13 +10,16 @@ import CreateStudent from './pages/CreateStudent';
 import UpdateStudent from './pages/UpdateStudent';
 import Dropdown from './pages/Dropdown';
 import Employee from './pages/Employee';
+import Login from './pages/Login';
+import { UserAuthContextProvider } from './context/UserAuthContext';
 function App() {
   return (
     <div className='container-fluid'>
+      <UserAuthContextProvider>
         <BrowserRouter>
        <Header/>
         <Routes>
-          <Route path="/" element={<Home/>}></Route>
+          <Route path="/" element={<Login/>}></Route>
           <Route path="/parentChild" element={<Parent/>}></Route>
           <Route path="/students" element={<Students/>}></Route>
           <Route path="/createStudent" element={<CreateStudent/>}></Route>
@@ -25,6 +28,7 @@ function App() {
           <Route path="/emp-react-node-express" element={<Employee/>}></Route>
         </Routes>
         </BrowserRouter>
+        </UserAuthContextProvider>
     </div>
   );
 }
