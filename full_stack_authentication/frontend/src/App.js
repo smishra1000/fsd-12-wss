@@ -11,12 +11,12 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Routes>
-          <Route element={<PrivateRoutes />}>
-            <Route path="dashboard" element={<Dashboard />}></Route>
+        <Route exact path="/login" element={<Login />}></Route>
+          <Route exact path="/signup" element={<Signup />}></Route>
+          <Route exact element={<PrivateRoutes />} >
+            <Route exact path="/dashboard" element={<Dashboard />}></Route>
+            <Route exact path="/" element={<Dashboard />}></Route>
           </Route>
-          <Route path="/login" element={<Login />}></Route>
-          <Route path="/signup" element={<Signup />}></Route>
-          <Route path="/" element={<Login />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

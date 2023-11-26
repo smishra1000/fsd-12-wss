@@ -22,7 +22,7 @@ router.post("/login", async function(req,res){
     if(user && user.email){
         if(user.password===req.body.password){
             const token = jwt.sign({id:user._id,email:user.email,role:user.role},"testkey");
-            res.send({msg:"login successfully",success:true,token:token})
+            res.send({msg:"login successfully",success:true,token:token,role:user.role})
         }else{
             res.send({msg:"wrong credentilas",success:false})
         }
