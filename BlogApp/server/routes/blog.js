@@ -1,53 +1,66 @@
 const express = require("express")
 const BlogModel = require("../models/blog")
 var ObjectId = require('mongodb').ObjectId;
+const path = require("path")
 
 const router = express.Router();
 
-router.get("/all",async function(req,res){
+router.get("/all", async function (req, res) {
     let blogs = await BlogModel.find();
     res.send(blogs)
 })
 
-router.post("/create", async function(req,res){
+router.post("/create", async function (req, res) {
     let newBlog = new BlogModel(req.body)
     await newBlog.save();
     res.send("blog created successfully")
 
 })
 
-router.delete("/deleteBlog/:id", async function(req,res){
-    const deltedBlog = await BlogModel.deleteOne({"_id":new ObjectId(req.params.id)})
+router.delete("/deleteBlog/:id", async function (req, res) {
+    const deltedBlog = await BlogModel.deleteOne({ "_id": new ObjectId(req.params.id) })
     res.send("blog deleted successfully")
 })
 
-router.get("/blogById/:id", async function(req,res){
-    let blog = await BlogModel.findOne({"_id": new ObjectId(req.params.id)})
+router.get("/blogById/:id", async function (req, res) {
+    let blog = await BlogModel.findOne({ "_id": new ObjectId(req.params.id) })
     res.send(blog)
 })
 
-router.put("/edit/:id",async function(req,res){
-    console.log(req.params,req.body)
-     const updatedBlog = await BlogModel.findByIdAndUpdate({"_id":new ObjectId(req.params.id)},req.body,{upsert:true})
+router.put("/edit/:id", async function (req, res) {
+    console.log(req.params, req.body)
+    const updatedBlog = await BlogModel.findByIdAndUpdate({ "_id": new ObjectId(req.params.id) }, req.body, { upsert: true })
     res.send("blog updated successfully")
 })
 
-router.get("/searchByTitle/:title",async function(req,res){
+router.get("/searchByTitle/:title", async function (req, res) {
     console.log(req.params.title)
-    const blogs = await BlogModel.find({title:req.params.title})
+    const blogs = await BlogModel.find({ title: req.params.title })
     res.send(blogs)
 })
 
-router.get("/searchByCategory/:category",async function(req,res){
+router.get("/searchByCategory/:category", async function (req, res) {
     console.log(req.params.category)
-    if(req.params.category.toLowerCase()==='all'){
+    if (req.params.category.toLowerCase() === 'all') {
         const blogs = await BlogModel.find({})
         res.send(blogs)
-    }else{
-        const blogs = await BlogModel.find({category:req.params.category.toLowerCase()})
+    } else {
+        const blogs = await BlogModel.find({ category: req.params.category.toLowerCase() })
         res.send(blogs)
     }
-    
+})
+
+// upload api is ready
+router.post("/imageupload", function (req, res) {
+    console.log(req.files)
+    const filename = Date.now()+req.files.blogimage.name;
+    const fileData = req.files.blogimage;
+    const uploadPath = path.join(__dirname, "../", "uploads");
+    fileData.mv(uploadPath + "/" + filename, function (err) {
+        if (err)
+            res.send("something went wrong")
+        res.send({ image: filename })
+    })
 })
 
 

@@ -109,7 +109,7 @@ function BlogList() {
                             <div className="row">
                                 <div className="col-md-4">
                                     <div className="blog-image" >
-                                        <img src={blog.image} style={{ height: '200px' }} />
+                                        <img src={`http://localhost:8000/uploads/${blog.image}`} style={{ height: '200px' }} />
                                     </div>
                                 </div>
                                 <div className="col-md-6">

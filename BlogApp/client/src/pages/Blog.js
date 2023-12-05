@@ -4,7 +4,7 @@ import axios from "axios"
 
 
 function Blog() {
-    const [blogData,setBlogData] = useState({title:"",content:"",author:"",image:"https://knorish-asset-cdn.azureedge.net/knorish-static-assets/images/v1/default_announcement_thumb.jpg",category:""})
+    const [blogData,setBlogData] = useState({title:"",content:"",author:"",image:"",category:""})
     const navigate = useNavigate();
     const onFieldChange = (e)=>{
             setBlogData((prev)=>{
@@ -27,6 +27,24 @@ function Blog() {
     const goToBlogs = ()=>{
         navigate("/bloglist")
     }
+    const onFileChange = (e)=>{
+        console.log(e)
+        const formData = new FormData();
+        formData.append("blogimage",e.target.files[0])
+        axios.post("http://localhost:8000/blog/imageupload",formData).then(function(data){
+            console.log("image updated successfully")
+            setBlogData((prev)=>{
+                return {
+                    ...prev,
+                    image:data.data.image
+                }
+            })
+            
+        }).catch(function(err){
+            console.log(err)
+        })
+
+    }
     return (
         <div className="container">
             <div className="row" style={{border:'2px solid #ddd'}}>
@@ -39,7 +57,7 @@ function Blog() {
                 <div className="col-md-6">
                     <div className="row">
                         <div className="mb-3">
-                            <label className="form-label">Ttitle</label>
+                            <label className="form-label">Title</label>
                             <input type="text" className="form-control" placeholder="Enter Title" name="title" value={blogData.title} onChange={(e)=>onFieldChange(e)}/>
                         </div>
                     </div>
@@ -59,6 +77,12 @@ function Blog() {
                         <div class="mb-3">
                             <label  className="form-label">Category</label>
                             <input type="text" className="form-control" placeholder="Enter Category" name="category" value={blogData.category} onChange={(e)=>onFieldChange(e)}/>
+                        </div>
+                    </div>
+                    <div className="row">
+                        <div class="mb-3">
+                            <label  className="form-label">Upload Blog Image</label>
+                            <input type="file" className="form-control"  onChange={(e)=>onFileChange(e)}/>
                         </div>
                     </div>
                     <button className="btn btn-primary" onClick={(e)=>saveBlog(e)}>Create</button>
