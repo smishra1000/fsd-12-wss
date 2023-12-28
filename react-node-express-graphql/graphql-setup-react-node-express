@@ -1,0 +1,473 @@
+Graphql setup react node js express 
+
+FRONTEND 
+
+1>install "graphql": "^16.8.1",  npm install graphql
+2>create // src/ApolloProvider.js
+    import React from 'react';
+    import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
+
+    const client = new ApolloClient({
+    uri: 'http://localhost:3001/graphql',
+    cache: new InMemoryCache(),
+    });
+
+    const ApolloWrapper = ({ children }) => (
+    <ApolloProvider client={client}>{children}</ApolloProvider>
+    );
+
+    export default ApolloWrapper;
+
+
+3> then inside index .js 
+    <ApolloWrapper>
+    <App />
+    </ApolloWrapper>    
+
+4> Then craete components StudentList,AddStudents,StudentDetails 
+
+// src/components/StudentList.js
+import React from 'react';
+import { useQuery,useMutation } from '@apollo/client';
+import { gql } from 'graphql-tag';
+
+const GET_ALL_STUDENTS = gql`
+  query {
+    getAllStudents {
+      id
+      name
+      age
+      address
+      phone
+    }
+  }
+`;
+export const DELETE_STUDENT = gql`
+  mutation DeleteStudent($studentId: ID!) {
+    deleteStudent(id: $studentId)
+  }
+`;
+
+const StudentList = () => {
+  const { loading, error, data } = useQuery(GET_ALL_STUDENTS);
+  const [deleteStudent] = useMutation(DELETE_STUDENT);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+
+
+  const handleDelete = async (studentId) => {
+    try {
+      const { data } = await deleteStudent({
+        variables: { studentId },
+      });
+
+      if (typeof data.deleteStudent==='string') {
+        // Redirect to a success page or navigate back to a list of students
+        // history.push('/students');
+        
+      } else {
+        // Handle unsuccessful deletion, show an error message, etc.
+        console.error('Failed to delete student:', data.deleteStudent.message);
+      }
+    } catch (error) {
+      console.error('Error deleting student:', error.message);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Student List</h2>
+      <ul>
+        {data.getAllStudents.map(student => (
+          <li key={student.id} onClick={()=>handleDelete(student.id)}>
+            {student.name} - {student.age} years old delete
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default StudentList;
+
+5. Add student 
+// AddStudent.js
+import React, { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { gql } from 'graphql-tag';
+const ADD_STUDENT = gql`
+  mutation AddStudent($input: StudentInput!) {
+    addStudent(input: $input) {
+      id
+      name
+      age
+      address
+      phone
+    }
+  }
+`;
+
+const AddStudent = () => {
+  const [formData, setFormData] = useState({
+    name: '',
+    age: 0,
+    address: '',
+    phone: '',
+  });
+
+  const [addStudent, { loading, error }] = useMutation(ADD_STUDENT);
+
+  const handleChange = (e) => {
+    if(e.target.name==="age"){
+      setFormData({ ...formData, [e.target.name]: Number(e.target.value) });
+    }else{
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    }
+   
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await addStudent({
+        variables: { input: formData },
+      });
+
+      console.log('Student added:', data.addStudent);
+
+      // Clear form data after successful submission
+      setFormData({
+        name: '',
+        age: 0,
+        address: '',
+        phone: '',
+      });
+    } catch (error) {
+      console.error('Error adding student:', error.message);
+    }
+  };
+
+  return (
+    <div>
+      <h2>Add Student</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Age:
+          <input type="number" name="age" value={formData.age} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Address:
+          <input type="text" name="address" value={formData.address} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Phone:
+          <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+        </label>
+        <br />
+        <button type="submit" disabled={loading}>
+          {loading ? 'Adding...' : 'Add Student'}
+        </button>
+      </form>
+      {error && <p>Error: {error.message}</p>}
+    </div>
+  );
+};
+
+export default AddStudent;
+
+// In this component:
+
+// The useMutation hook from Apollo Client is used to execute the ADD_STUDENT mutation.
+// The handleChange function updates the formData state as the user types into the form fields.
+// The handleSubmit function sends a mutation query to the GraphQL server with the form data when the form is submitted.
+// The form fields are controlled by the formData state, and the form is reset after a successful submission.
+// Make sure to replace the ADD_STUDENT mutation and form fields with your actual GraphQL mutation and schema. Additionally, handle loading and error states appropriately in your UI.
+
+
+6> StudentDetails 
+
+// Your React component (e.g., StudentDetails.js)
+import React from 'react';
+import { useParams } from 'react-router-dom';
+import { useQuery } from '@apollo/client';
+import { gql } from 'graphql-tag';
+
+
+const GET_STUDENT_BY_ID = gql`
+  query GetStudentById($studentId: ID!) {
+    getStudent(id: $studentId) {
+      id
+      name
+      age
+      address
+      phone
+      __typename
+    }
+  }
+`;
+
+
+const StudentDetails = () => {
+  const { studentId } = useParams();
+
+  // Execute the query with the studentId variable
+  const { loading, error, data } = useQuery(GET_STUDENT_BY_ID, {
+    variables: { studentId:Number(studentId) },
+  });
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
+  const student = data.getStudent;
+
+  // Display the student details in your component
+  return (
+    <div>
+      <h2>Student Details</h2>
+      <p>ID: {student.id}</p>
+      <p>Name: {student.name}</p>
+      <p>Age: {student.age}</p>
+      <p>Address: {student.address}</p>
+      <p>Phone: {student.phone}</p>
+    </div>
+  );
+};
+
+export default StudentDetails;
+
+
+7> UPdate student 
+
+// src/components/UpdateStudent.js
+import React, { useState, useEffect } from 'react';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useQuery, useMutation } from '@apollo/client';
+// import { UPDATE_STUDENT } from '../graphql/mutations';
+// import { GET_STUDENT_BY_ID } from '../graphql/queries';
+import { gql } from 'graphql-tag';
+
+
+const GET_STUDENT_BY_ID = gql`
+  query GetStudentById($studentId: ID!) {
+    getStudent(id: $studentId) {
+      id
+      name
+      age
+      address
+      phone
+      __typename
+    }
+  }
+`;
+export const UPDATE_STUDENT = gql`
+  mutation UpdateStudent($id: ID!, $input: StudentInput!) {
+    updateStudent(id: $id, input: $input) {
+      id
+      name
+      age
+      address
+      phone
+    }
+  }
+`;
+const UpdateStudent = () => {
+    const { studentId } = useParams();
+
+  const navigate = useNavigate();
+
+  const { loading, error, data } = useQuery(GET_STUDENT_BY_ID, {
+    variables: { studentId:Number(studentId) },
+  });
+
+  const [updateStudent, { loading: mutationLoading, error: mutationError }] = useMutation(
+    UPDATE_STUDENT
+  );
+
+  const [formData, setFormData] = useState({
+    name: '',
+    age: 0,
+    address: '',
+    phone: '',
+  });
+
+  useEffect(() => {
+    // Populate form data when the student data is loaded
+    if (data && data.getStudent) {
+      const { name, age, address, phone } = data.getStudent;
+      setFormData({
+        name,
+        age,
+        address,
+        phone,
+      });
+    }
+  }, [data]);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const { data } = await updateStudent({
+        variables: { id: Number(studentId), input: formData },
+      });
+
+      console.log('Student updated:', data.updateStudent);
+
+      // Redirect to the student detail page after successful update
+    //   history.push(`/students/${studentId}`);
+    navigate("/students")
+    } catch (error) {
+      console.error('Error updating student:', error.message);
+    }
+  };
+
+//   if (queryLoading || mutationLoading) return <p>Loading...</p>;
+//   if (queryError || mutationError) return <p>Error: {queryError?.message || mutationError?.message}</p>;
+
+  return (
+    <div>
+      <h2>Update Student</h2>
+      <form onSubmit={handleSubmit}>
+        <label>
+          Name:
+          <input type="text" name="name" value={formData.name} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Age:
+          <input type="number" name="age" value={formData.age} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Address:
+          <input type="text" name="address" value={formData.address} onChange={handleChange} />
+        </label>
+        <br />
+        <label>
+          Phone:
+          <input type="text" name="phone" value={formData.phone} onChange={handleChange} />
+        </label>
+        <br />
+        <button type="submit">update</button>
+        {/* <button type="submit" disabled={loading}>
+          {loading ? 'Adding...' : 'Add Student'}
+        </button>
+        <button type="submit" disabled={mutationLoading}>
+          {mutationLoading ? 'Updating...' : 'Update Student'}
+        </button> */}
+      </form>
+      {mutationError && <p>Error: {mutationError.message}</p>}
+    </div>
+  );
+};
+
+export default UpdateStudent;
+
+
+
+BACKEND SETUP-------------------------
+
+1> install  cors,express,graphql,express-graphql,nodemon 
+2>create server.js file and inside server.js  add folowing code
+// server.js
+const express = require('express');
+const { graphqlHTTP } = require('express-graphql');
+const mongoose = require('mongoose');
+const { buildSchema } = require('graphql');
+const cors = require("cors")
+
+const app = express();
+const PORT = 3001;
+
+app.use(cors())
+
+// Connect to MongoDB using Mongoose
+mongoose.connect('mongodb://localhost:27017/studentdb', { useNewUrlParser: true, useUnifiedTopology: true });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => console.log('Connected to MongoDB'));
+
+// Define a GraphQL schema
+const schema = buildSchema(`
+  type Student {
+    id: ID
+    name: String
+    age: Int
+    address: String
+    phone: String
+  }
+
+  input StudentInput {
+    name: String
+    age: Int
+    address: String
+    phone: String
+  }
+
+  type Query {
+    getStudent(id: ID): Student
+    getAllStudents: [Student]
+  }
+
+  type Mutation {
+    addStudent(input: StudentInput): Student
+    updateStudent(id: ID, input: StudentInput): Student
+    deleteStudent(id: ID): String
+  }
+`);
+
+// Sample data
+const students = [{id:1,name:"sameer",age:20,address:'hyd',phone:11111}];
+
+// Define resolver functions
+const root = {
+  getStudent: ({id}) =>{
+    console.log("hh",id)
+    return students.find(student => Number(student.id) === Number(id))
+  },
+  getAllStudents: () => students,
+  addStudent: ({ input }) => {
+    console.log(input)
+    const newStudent = { id: String(students.length + 1),...input };
+    students.push(newStudent);
+    return newStudent;
+  },
+  updateStudent: ({ id, input }) => {
+    const studentIndex = students.findIndex(student => Number(student.id) === Number(id));
+    if (studentIndex !== -1) {
+      students[studentIndex] = { ...students[studentIndex], ...input };
+      return students[studentIndex];
+    }
+    return null;
+  },
+  deleteStudent: ({ id }) => {
+    const studentIndex = students.findIndex(student => Number(student.id) === Number(id));
+    if (studentIndex !== -1) {
+      students.splice(studentIndex, 1);
+      return 'Student deleted successfully';
+    }
+    return 'Student not found';
+  },
+};
+
+// GraphQL endpoint
+app.use('/graphql', graphqlHTTP({ schema, rootValue: root, graphiql: true }));
+
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}/graphql`);
+});
