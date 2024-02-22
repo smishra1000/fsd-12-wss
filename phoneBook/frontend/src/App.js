@@ -4,6 +4,9 @@ import {BrowserRouter,Routes,Route} from "react-router-dom"
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import CreateContact from './pages/Contacts/CreateContact';
+import ContactList from './pages/Contacts/ContactsList';
+import Contacts from './pages/Contacts/Contacts';
 
 function App() {
   return (
@@ -12,7 +15,12 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
-        <Route path="/" element={<Dashboard/>}></Route>
+        {/* <Route path="/" element={<Dashboard/>}> */}
+        <Route path="/" element={<Contacts/>}>
+          <Route path="/create-contact" element={<CreateContact/>}></Route>
+          <Route path="/list" element={<ContactList/>}></Route>
+        </Route>
+        {/* </Route> */}
       </Routes>
       </BrowserRouter>
     </div>

@@ -8,7 +8,7 @@ router.post("/login",async function(req,res){
    let isUserExist = await AuthModel.findOne({email:email})
    if(isUserExist){
     if(password===isUserExist.password){
-        return res.send({message:"Login successfully",success:true})
+        return res.send({message:"Login successfully",success:true,user:isUserExist})
     }else{
         return res.send({message:"Invalid Credentials",success:false})
     }

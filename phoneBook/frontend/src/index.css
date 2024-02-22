@@ -12,3 +12,14 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.contact-card{
+  box-shadow: 0 4px 8px 0 !important;
+  border-radius: 5px;
+}
+
+.contact-img{
+  max-width: 80px;;
+  border-radius: 50%;
+  margin: 10px auto;
+}
