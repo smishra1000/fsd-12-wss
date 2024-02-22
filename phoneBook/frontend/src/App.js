@@ -7,6 +7,7 @@ import Dashboard from './pages/Dashboard';
 import CreateContact from './pages/Contacts/CreateContact';
 import ContactList from './pages/Contacts/ContactsList';
 import Contacts from './pages/Contacts/Contacts';
+import PrivateRoutes from './components/PrivateRoutes';
 
 function App() {
   return (
@@ -16,9 +17,11 @@ function App() {
         <Route path="/login" element={<Login/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
         {/* <Route path="/" element={<Dashboard/>}> */}
-        <Route path="/" element={<Contacts/>}>
+        <Route exact element={<PrivateRoutes/>}>
+          <Route path="/" element={<Contacts/>}>
           <Route path="/create-contact" element={<CreateContact/>}></Route>
           <Route path="/list" element={<ContactList/>}></Route>
+          </Route>
         </Route>
         {/* </Route> */}
       </Routes>
